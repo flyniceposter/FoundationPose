@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "checks": [
+    "disjoint adaptation objects",
+    "unique frames",
+    "identical arm initialization",
+    "encoder weights changed",
+    "BN stats fixed",
+    "fresh probes preserve encoders",
+    "development-only checkpoint selection",
+    "finite checkpoints",
+    "evaluation coverage"
+  ],
+  "encoder_audit": [
+    {
+      "seed": 42,
+      "arm": "depth",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 600
+    },
+    {
+      "seed": 42,
+      "arm": "structure",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 600
+    },
+    {
+      "seed": 123,
+      "arm": "depth",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 200
+    },
+    {
+      "seed": 123,
+      "arm": "structure",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 200
+    },
+    {
+      "seed": 2026,
+      "arm": "depth",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 200
+    },
+    {
+      "seed": 2026,
+      "arm": "structure",
+      "encoder_weight_tensors_changed": 12,
+      "best_step": 200
+    }
+  ]
+}

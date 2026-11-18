@@ -1,0 +1,11 @@
+# Additional encoder controls
+
+Specified after the primary run started and before reading its condition-level summaries. These are supporting diagnostics, not a new held-out benchmark.
+
+Use 10 deterministic development frames per object (130 frames). The primary split's row order is fixed. For each architecture use the identical observation input: crop ratio 1.2, depth validity 0.001 m. This removes native-preprocessing differences for direct comparisons. Run four variants: pretrained; fully random; random convolution weights with pretrained BatchNorm parameters/statistics; pretrained convolution weights with reset BatchNorm parameters/statistics. Random controls use three initialization seeds, 101, 202, 303. Pretrained is run once; each seeded control uses its own initialization. This factorial decomposition is diagnostic only; hybrid weights/statistics are not deployable or trained models.
+
+Measure the shared encoder and every pair-fusion encoder block. For fusion, fix branch A to the clean observation features and perturb branch B. The baseline is an observation/observation self-pair. It is artificial: it tests perturbation propagation and never establishes real rendered/observed matching, pose ranking, or rotation/translation accuracy. Both branches share one encoder instance exactly as in the implementation. Stop before positional embeddings and task heads, keeping the work focused on the CNN encoders.
+
+Predeclared conditions: clean, brightness 0.5, blur sigma 3, zero RGB, zero XYZ, RGB shift 5 crop px, XYZ shift 5 crop px, joint shift 5 crop px, RGB noise sigma 0.1, depth noise sigma 5 mm, depth dropout 30%, central rectangular occlusion 30%. Noise uses the deterministic primary seed 0. Bootstrap frames within object; initialization seeds are averaged per frame and are reported separately as descriptive ranges. Do not treat seeds as extra frames.
+
+Also inspect modality groups in the first convolution (Frobenius norms), BatchNorm scale/running variance, feature effective rank, and layerwise centered kernel alignment of pooled clean embeddings. Weight norms are parameter diagnostics, not modality importance. Linear CKA follows Kornblith et al. (ICML 2019), https://proceedings.mlr.press/v97/kornblith19a.html .

@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "holdout_disjoint_from_all_training_and_development_categories": true,
+  "encoder_and_bn_identical_between_all_six_models": true,
+  "counts": {
+    "train": {
+      "standard": 480,
+      "small": 480,
+      "exact": 480
+    },
+    "development": {
+      "standard": 160,
+      "small": 160,
+      "exact": 160
+    }
+  },
+  "checkpoints": [
+    {
+      "arm": "standard",
+      "seed": 42,
+      "selected_step": 300,
+      "development": 0.01894314396522532
+    },
+    {
+      "arm": "mixture",
+      "seed": 42,
+      "selected_step": 900,
+      "development": 0.01783269020834268
+    },
+    {
+      "arm": "standard",
+      "seed": 123,
+      "selected_step": 600,
+      "development": 0.019198894563669456
+    },
+    {
+      "arm": "mixture",
+      "seed": 123,
+      "selected_step": 600,
+      "development": 0.017942245031372296
+    },
+    {
+      "arm": "standard",
+      "seed": 2026,
+      "selected_step": 300,
+      "development": 0.019058016436792967
+    },
+    {
+      "arm": "mixture",
+      "seed": 2026,
+      "selected_step": 800,
+      "development": 0.017891437732941995
+    }
+  ],
+  "initial_source_sha256": "6b40b486ac1bb02742b4a28bce5dd0f039ee8b742613569e98bb67e54ffe4dce",
+  "final_source_sha256": "f16b687d878a986ce6c72e7a260e1f37c0ec2fb37c0bebb2d8b92660922b2226",
+  "complete_registration_records": 3360,
+  "fallback_records": 42,
+  "fallback_cases": [
+    {
+      "object": 9,
+      "frame": "001092",
+      "condition": "dropout40",
+      "all_variants": true,
+      "actual_refinement_iterations": 0
+    }
+  ]
+}

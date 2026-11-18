@@ -1,0 +1,803 @@
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+Your FoundationPose research,
+explained
+A practical reading guide for an undergraduate researcher
+
+
+The question you are answering
+Given a camera image, depth measurements and a 3D
+model, can the computer correctly place and orient that
+object in 3D? Your project measures how well NVIDIA
+FoundationPose answers this question on LINEMOD.
+
+What to know before reading
+You do not need prior robotics knowledge. Start with the
+pictures and examples. The mathematical notation is
+included so you can connect the explanation to the code
+later.
+
+Reading route
+Pages 2–5: what a pose is and how it is estimated. Pages 6–7:
+your dataset and the interrupted/recovered run. Pages 8–10:
+accuracy metrics. Pages 11–13: real results and pictures.
+Pages 14–17: next experiments, files, vocabulary and
+references.
+
+A dated snapshot, not a live dashboard
+This guide was generated October 21, 2026, 04:43 PM
+Eastern. The monitor snapshot at 2026-10-21T16:43:19-04:00
+showed 6,605 of 15,800 poses saved (41.8%). Full-run
+accuracy was still pending at that snapshot. Use
+PROGRESS.md for current progress, not this PDF.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   1 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+1. What does “6D pose”
+mean?
+Three numbers describe position; three independent
+quantities describe orientation.
+
+
+Position: where is it?
+Imagine putting a mug on a table. Move it left/right, up/down
+and nearer/farther from the camera. Those three directions
+describe translation, usually written as t = [tx, ty, tz].
+
+Orientation: which way does it face?
+Now leave the mug in the same place and turn or tilt it.
+Orientation has three rotational degrees of freedom. A
+rotation matrix stores this orientation without being just a list
+of three angles.
+
+Why six?
+Three positional degrees of freedom plus three rotational
+degrees of freedom make six. “6D” does not mean six spatial
+dimensions. A 3-by-3 rotation matrix contains nine entries,
+but its geometric constraints leave three independent
+rotational degrees of freedom.
+
+
+
+
+                                                                         orientation changes
+
+
+                                         translation
+
+
+
+
+                  original                                           moved                     turned
+
+                           Position and orientation are different parts of a pose.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status              2 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+2. What goes into your
+experiment?
+The current run is model-based RGB-D pose estimation.
+
+
+RGB image
+A normal color picture: what the scene looks like. RGB stands
+for red, green and blue.
+
+Depth image
+A depth value at each pixel estimates the distance along the
+camera viewing axis. Together with camera calibration, depth
+helps convert image pixels into 3D points. Invalid or noisy
+depth can make the estimate worse.
+
+Visible-object mask
+A binary image marks the pixels belonging to the visible part
+of the object. Your baseline receives ground-truth visible
+masks. It is not testing whether a separate detector can find
+the object.
+
+CAD mesh and calibration
+The mesh is the object’s 3D shape. Camera intrinsics, usually
+called K, connect 3D camera coordinates to image pixels.
+Your run uses the provided CAD models, not reconstructed
+models.
+
+Ground truth: the reference answer
+BOP supplies the reference pose for comparison. Its masks
+are deliberately used as inputs here. The reference pose is
+used for evaluation; the inspected ranking-error helper
+returns a placeholder and does not use it to pick the winning
+pose.
+
+Training is different from inference
+Training learns network weights from examples. Inference
+applies the already-trained networks. Your server is running
+inference and evaluation, not training new FoundationPose
+weights.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   3 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+3. How does FoundationPose
+find a pose?
+Think: propose placements, improve them, then choose one.
+
+
+Step 1 — Prepare the observation
+Load the RGB image, depth image and object mask. The
+mask and depth provide an initial estimate of the object’s
+position.
+
+Step 2 — Propose candidate orientations
+Place the model in many plausible orientations. The original
+log showed 252 initial candidates; symmetry clustering can
+change this count for different objects.
+
+Step 3 — Refine each candidate
+Render the model and compare the rendering with the
+observed scene. A learned refinement network adjusts
+candidate poses. Your registration method defaults to five
+refinement iterations.
+
+Step 4 — Score and select
+A learned scoring network ranks the refined candidates. The
+highest-ranked candidate becomes the saved pose. This
+score is a network preference, not a ground-truth accuracy
+measurement.
+
+Registration versus tracking
+Registration starts by finding a pose from candidates.
+Tracking uses a previous pose to help process a later frame.
+This LINEMOD runner registers each image independently. A
+successful video demo is not the same experimental protocol
+as this dataset evaluation.
+
+
+
+
+    RGB + depth                               Candidate                                Refine     Score and
+   + mask + CAD                                 poses                               placements   save winner
+
+
+
+
+Concept: NVIDIA FoundationPose project [1]. Settings: local estimater.py and run_linemod.py.
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status            4 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+4. Understanding the saved
+pose matrix
+A pose moves points from the CAD model’s coordinates into
+the camera’s coordinates.
+
+
+The rule
+For a model point, first rotate it using R, then shift it using t.
+The model and camera have different coordinate origins. A
+4-by-4 homogeneous matrix stores the complete transform in
+one array.
+
+A simple example
+Assume no rotation. Let a model point be [0.01, 0, 0] metres
+and the object translation be [0.10, -0.02, 0.80] metres. Its
+camera point is [0.11, -0.02, 0.80] metres. This is an
+illustrative example, not a measured pose from your run.
+
+The unit conversion that matters
+Your estimator works with metres. BOP mesh vertices and
+ground-truth translations are provided in millimetres. Analysis
+multiplies predicted translation by 1,000 before comparing
+them. Thus 0.80 m equals 800 mm.
+
+A common mistake to avoid
+Do not invert this matrix or apply a second mesh-centering
+correction. The inspected estimator already returns a
+transform for the original CAD model. Adding another
+correction would create a false error.
+
+
+
+
+       pcamera = Rpmodel + t
+
+       Saved 4 × 4 layout:                          [ R (3 × 3) | t (3 × 1) ]
+                                                                [    0    0                  0   |   1        ]
+
+
+
+
+Local datareader.py, estimater.py; BOP dataset format [4].
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status           5 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+5. What exactly is being
+evaluated?
+LINEMOD is the dataset; BOP provides standardized
+packaging and protocols.
+
+
+Your selected data
+Dataset root: /home/Sahil/datasets/bop/lm. The runner selects
+13 object IDs: 1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14 and 15. It
+excludes bowl (3) and mug (7). These selected scenes contain
+15,800 expected object-image poses.
+
+One image, one matching reference
+Analysis matches scene ID, image ID and object ID to
+scene_gt.json. Where metadata has several entries, the
+object’s instance index must also match. The selected data
+were checked for ambiguous same-object instances.
+
+What was checked before the run
+All expected RGB images, depth images, visible masks and
+camera entries were present. Each selected scene had
+constant camera intrinsics and depth scale, consistent with
+this reader’s assumptions.
+
+Which split?
+split=None uses every RGB image in the selected scenes. It is
+not automatically the historical LINEMOD train/test split or the
+BOP challenge target subset. A split is the exact collection of
+examples you evaluate.
+
+Important limits
+LM and occluded LINEMOD (LM-O) are different datasets.
+Good LM results do not establish LM-O performance.
+Ground-truth masks also make this easier than an end-to-end
+system that must detect and segment objects for itself.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   6 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+6. What happened to the first
+run?
+The recovery preserves useful work while making its
+limitations visible.
+
+
+Original evaluation
+PID 3257117 ran the original run_linemod.py. That script kept
+pose predictions in memory and wrote the combined YAML
+only after all selected objects finished.
+
+Interruption
+The original process stopped before the final YAML existed. A
+later host check showed the server had rebooted. The
+immediate reason inference first stopped is not established. A
+disappearing process alone does not prove successful
+completion.
+
+What could be recovered
+The preserved log contained 5,186 complete printed pose
+matrices: all frames for objects 1, 2, 4 and 5, plus 339 frames
+for object 6. Printed numbers are rounded and are not
+guaranteed to reproduce the original arrays bit for bit.
+
+The continuation you approved
+The new run reuses that rounded prefix and computes the
+other 10,614 poses. An isolated adapter saves each new pose
+at native precision after every frame. Core FoundationPose
+algorithms, weights and datasets remain unchanged.
+
+What makes the new workflow safer
+Atomic checkpoints prevent half-written pose files from
+appearing as complete checkpoints. A user service runs
+independently of the terminal. A reboot can still stop
+execution, but completed checkpoints can be reused. CPU
+analysis requires a normal inference exit and a verified
+completion artifact.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   7 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+7. What do the error metrics
+measure?
+Smaller errors are better. Recall is different: larger is better.
+
+
+Translation error — millimetres
+Distance between the predicted and reference translation
+vectors. Example: 4 mm means the model origin is displaced
+by about 4 mm; it does not mean every surface point is only
+4 mm away.
+
+Rotation error — degrees
+The angular difference between the two orientations. Zero
+degrees means identical orientation. Your raw rotation
+statistic is not corrected for object symmetry.
+
+ADD — millimetres
+Transform each CAD vertex with the predicted pose and the
+same vertex with the reference pose. ADD averages their
+distances. It captures the combined effect of position and
+orientation.
+
+ADI / ADD-S — millimetres
+Instead of requiring the same vertex, use a nearest-neighbor
+vertex. Your audited implementation queries reference
+vertices against the predicted point cloud. The direction
+matters. This makes some symmetric alignments less harshly
+penalized.
+
+MSSD — millimetres
+For each annotated symmetry, compute the largest
+corresponding-vertex surface distance; choose the smallest
+result across those symmetries. It is sensitive to the worst
+surface displacement.
+
+MSPD — pixels
+Perform the analogous symmetry-aware maximum
+comparison after projecting model vertices into the image. It
+measures image-space alignment rather than 3D distance.
+
+
+
+
+Metric definitions: official BOP toolkit [3]. Local scripts implement diagnostic measurements, not official scoring.
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status                             8 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+8. Worked examples: errors
+and symmetry
+These numbers and drawings are teaching examples, not
+your experimental results.
+
+
+Average versus maximum
+Suppose corresponding transformed vertices are 2, 3 and 4
+mm apart. Their average is 3 mm, while their maximum is 4
+mm. ADD emphasizes the average; MSSD uses a maximum
+before choosing among annotated symmetries.
+
+What “ADD(-S) < 0.1 diameter ” means
+For a toy object with diameter 100 mm, the threshold is 10
+mm. An error of 7 mm passes; an error of 12 mm fails. An
+error exactly equal to 10 mm fails because your comparison
+uses strict less-than.
+
+Why rotation alone can be misleading
+A perfectly untextured rectangular block can look identical
+after a 180-degree turn about an appropriate axis. Its raw
+rotation difference can be 180 degrees even though a
+symmetry-aware comparison finds the placement equivalent.
+
+How your analysis handles this
+The conventional LINEMOD ADD(-S) diagnostic uses ADI for
+eggbox (10) and glue (11), and ADD for the other included
+objects. MSSD and MSPD instead use the discrete
+transformations in BOP metadata, including their translation
+offsets. Free nearest neighbors are not the same thing as a
+globally consistent object symmetry.
+
+
+
+
+                                                  180° turn
+
+
+                                Toy symmetric block: same geometry after the turn.
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   9 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+9. Recall is not “percent
+correct coordinates”
+A threshold turns each pose error into a pass or fail.
+
+
+Pose recall
+If 90 out of 100 expected poses have errors below the chosen
+threshold, recall is 90%. That is a fraction of object instances
+passing a test, not a percentage of matrix entries that are
+correct.
+
+Missing predictions count
+If 10 expected poses are missing, the denominator is still 100.
+Reporting only the 90 surviving outputs could hide failures.
+Your full expected-set recall counts missing and invalid
+predictions as failures.
+
+Pooled versus object macro
+Pooled recall combines every expected pose, so objects with
+more images get more weight. Object-macro recall first
+computes recall for each object and then averages the object
+recalls equally.
+
+A diagnostic is not an official benchmark score
+Your ADD(-S) recall, MSSD < 0.1 diameter recall and MSPD <
+5 pixel recall are diagnostic measurements on this chosen
+split. Official BOP19 localization AR averages recalls over
+protocol-defined thresholds for VSD, MSSD and MSPD, then
+combines them. VSD concerns visible rendered surfaces.
+
+What an official claim would require
+Use the appropriate official protocol and toolkit, target list,
+matching and symmetry conventions, model sampling and
+required inputs. Disclose GT-mask input and any recovered
+rounded predictions. This workflow has not computed VSD or
+official BOP AR, and no official benchmark accuracy is
+claimed.
+
+
+
+
+Protocol distinction: BOP localization task description [2].
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   10 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+10. What results do we
+actually have?
+Measured diagnostics from the recovered prefix only.
+
+
+The observed prefix
+The 5,186 valid recovered poses have mean translation error
+4.01 mm, mean raw rotation error 1.90 degrees and
+observed ADD(-S) recall 99.75%. These values come from
+rounded text matrices recovered from the old log.
+
+Why this is not the full baseline
+The prefix has only five object IDs and includes just part of
+object 6. Its object/frame ordering is not a random sample of
+all 15,800 poses. Later objects may be harder. Do not present
+99.75% as final LINEMOD accuracy.
+
+How to read this table
+Rows describe observed valid predictions. Objects 1, 2, 4 and
+5 have complete selected-scene coverage; object 6 has only
+339 recovered frames. Means over valid predictions and
+recalls over all expected poses answer different questions.
+
+
+
+
+         Object                  Valid poses              Mean t (mm)                 Mean R (°)    ADD(-S) recall
+
+            1                        1236                      4.05                          2.50      98.95%
+
+            2                        1214                      3.32                          1.68     100.00%
+
+            4                        1201                      4.27                          2.14     100.00%
+
+            5                        1196                      4.67                          1.22     100.00%
+
+            6                         339                      3.10                          2.13     100.00%
+
+   Observed pooled                   5186                      4.01                          1.90      99.75%
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status                      11 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+11. Look at actual pose
+overlays
+Green is ground truth. Red is the prediction.
+
+
+What the boxes show
+A 3D bounding box around the CAD model is projected into
+the camera image. When the predicted and reference boxes
+line up, the placement is visually close. A projected box is a
+qualitative check; it does not replace 3D metrics.
+
+The examples below
+Both examples are object 1 from the recovered original run.
+The left example passes the ADD threshold; the right fails.
+The failure is a pose mismatch, but the picture alone does not
+prove whether depth, initialization or refinement caused it.
+
+Selection matters
+These are selected best/worst examples, not a random
+sample. Use the CSV denominators to learn how frequent
+failures are.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   12 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+12. Reading the graphs
+without getting misled
+Always read units, denominators and missing counts.
+
+
+Error distributions
+The plot below groups translation and raw rotation errors by
+object. The box shows the middle half of valid errors; its
+center line is the median. Whiskers summarize spread under
+the plotting convention. Outlier points were hidden to keep
+the scale readable.
+
+What a low mean can hide
+A few very large errors can matter even when typical
+performance is good. Read the median and 90th percentile
+as well as the mean. Hidden outlier markers do not mean the
+outliers disappeared from the CSV.
+
+Why some groups are empty
+This plot is from recovered data. Later objects have no valid
+recovered predictions. An empty group is missing data, not a
+perfect zero-error result.
+
+The other plots
+Recall bars compare per-object passing fractions. A
+recall-versus-threshold curve shows how strictness changes
+the score. Visibility/distance strata describe associations;
+different object mixtures can confound them.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   13 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+13. What should the next
+experiment test?
+A useful experiment changes one factor and measures the
+difference.
+
+
+Question and hypothesis
+Because the baseline receives ideal GT masks, test how pose
+quality changes when those masks are imperfect. Hypothesis:
+small mask boundary errors or image shifts reduce pose
+recall, especially when little of the object is visible.
+
+Controlled procedure
+Keep RGB, depth, CAD model, calibration and pose settings
+fixed. Compare the original mask with predefined erosion,
+dilation and shift variants. Write variants to a new directory
+instead of editing the dataset. Use the same frames and
+paired seeds for every condition.
+
+Development versus held-out data
+The proposal uses 20 development and 20 held-out frames
+per object, selected deterministically. Tune any mitigation on
+development frames only. Since the full baseline has already
+been inspected, this is a study split, not an untouched official
+benchmark test.
+
+What to measure
+Record mask IoU, paired changes in ADD(-S), MSSD and
+MSPD recall, translation/rotation percentiles and runtime. A
+useful result explains a reproducible relationship, rather than
+only showing a higher number.
+
+What has not happened yet
+No mask-noise, depth-noise or refinement-ablation GPU study
+has been launched. The full proposed mask study needs
+20,280 registrations and requires a separate approval. The
+current approval covers the 10,614-frame baseline
+continuation only.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   14 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+14. Where your work lives
+You do not need to memorize every script; recognize these
+landmarks.
+
+
+Original experiment, preserved
+debug/bop_full/run.log is the interrupted original log. The
+original final linemod_res.yml was never produced.
+research/linemod_20261020/recovery/ contains
+reconstructed predictions, partial diagnostics and example
+images.
+
+Approved continuation
+debug/bop_recovery_20261021/checkpoints/ stores one pose
+per file. checkpoint_status.json records saved coverage.
+inference.log records model activity. completion.json appears
+only when the adapter finishes its full save and key-coverage
+checks.
+
+Live progress and final results
+research/linemod_20261020/PROGRESS.md is the current
+summary. The new job’s analysis/ directory will hold CSVs,
+plots and REPORT.md after inference succeeds. The main
+research REPORT.md will also receive the completed
+measurements.
+
+Success is a sequence of checks
+Inference child exits normally; the completion marker and
+prediction hash agree; every expected key is matched;
+matrices are checked; then CPU scripts compute metrics and
+examples. If a stage fails, its artifacts and status must be
+inspected instead of declaring completion.
+
+What you should do while it runs
+Leave the server on and avoid another GPU-heavy workload.
+Read this guide and the partial results. Prepare your research
+question. Progress percentage is how much is saved; it is not
+how accurate the algorithm is.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   15 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+15. A short glossary and
+self-check
+If you can answer the questions below, you understand the
+workflow.
+
+
+Vocabulary
+Pose: position and orientation. Inference: applying trained
+weights. Ground truth: the reference answer. Mesh: a 3D model
+made of vertices and faces. Intrinsics: camera calibration. Mask:
+selected object pixels. Symmetry: an equivalent object
+transformation. Checkpoint: saved completed work. Baseline: a
+fixed reference experiment. Ablation: a controlled change to test
+one factor.
+
+Check your understanding
+1. Why can translation error be small while surface error is large?
+2. Why is a 180-degree rotation not always a physical failure?
+3. Why is 99.75% on the recovered prefix not final full-run
+accuracy?
+4. What separates a running process from a successfully
+completed evaluation?
+5. Why does changing both masks and depth at once make
+conclusions harder?
+
+Answers
+1. Wrong orientation can move surface points even when the
+model origin is close.
+2. A valid object symmetry can make the placements equivalent.
+3. The prefix excludes most later objects and comes from
+rounded logs.
+4. Normal completion plus validated saved outputs and
+coverage, followed by analysis checks.
+5. You cannot identify which change caused the effect.
+
+One sentence you can tell your advisor
+“I am evaluating pretrained FoundationPose on a 13-object BOP
+LINEMOD RGB-D split with ground-truth visible masks. The
+recovered baseline uses a disclosed rounded-log prefix,
+native-precision continuation, and diagnostic pose metrics;
+official BOP scores have not been computed.”
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   16 / 17
+FOUNDATIONPOSE / PROJECT READING GUIDE
+
+
+
+
+16. Sources and a sensible
+reading order
+Primary sources, followed by your local experimental record.
+
+
+Start here
+Read this guide, then the FoundationPose overview and
+pipeline figure. Next read the BOP task description. Save the
+full paper until translation, rotation and symmetry are
+familiar.
+
+[1] FoundationPose — authors’ project page
+https://nvlabs.github.io/FoundationPose/
+
+
+[2] BOP tasks — official protocol description
+https://bop.felk.cvut.cz/tasks/
+
+
+[3] Official metric implementations
+https://github.com/thodan/bop_toolkit/blob/master/bop_toolkit_lib/pose_err
+or.py
+
+
+[4] Official dataset-format documentation
+https://github.com/thodan/bop_toolkit/blob/master/docs/bop_datasets_for
+mat.md
+
+
+[5] BOP dataset catalog
+https://bop.felk.cvut.cz/datasets/
+
+
+[6] FoundationPose paper — CVPR 2024
+https://openaccess.thecvf.com/content/CVPR2024/papers/Wen_Foundation
+Pose_Unified_6D_Pose_Estimation_and_Tracking_of_Novel_Objects_CVPR_
+2024_paper.pdf
+
+
+Your local evidence
+Experimental record:
+research/linemod_20261020/REPORT.md. Project-specific
+explanations use local code, recovered diagnostics and
+continuation status files. References checked October 21,
+2026. This is an explanatory guide, not an NVIDIA or Rutgers
+publication.
+
+
+
+
+Rutgers ARC Lab research workflow • Generated October 21, 2026 • Snapshot, not live status   17 / 17
+

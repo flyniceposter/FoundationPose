@@ -1,0 +1,1 @@
+Excluded from scientific findings: passing an explicit pyrender material suppressed vertex colors, so original-color and uniform references were identical. Corrected v2 imports vertex colors before normalizing material properties, asserts appearance difference, and checks paired depth equality. Original files retained for audit.

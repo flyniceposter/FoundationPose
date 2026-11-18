@@ -1,0 +1,1093 @@
+{
+  "frame": {
+    "obj_id": "12",
+    "im_id": "485",
+    "split": "development",
+    "selection": "sha256(mask-study-v1/obj_id/im_id)"
+  },
+  "kind": "refine",
+  "variant": "random_conv_trained_bn",
+  "initialization_seed": 303,
+  "records": [
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "clean",
+      "cosine": -1.049041748046875e-05,
+      "relative_l2": 0.0,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.36558350920677185,
+      "rms": 0.6037013530731201
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "brightness_0.5",
+      "cosine": 0.0036993026733398438,
+      "relative_l2": 0.08968740701675415,
+      "pooled_cosine": 0.0026233792304992676,
+      "zero_fraction": 0.36292725801467896,
+      "rms": 0.5862118601799011
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "blur_3",
+      "cosine": 0.0005426406860351562,
+      "relative_l2": 0.033254627138376236,
+      "pooled_cosine": 2.0265579223632812e-06,
+      "zero_fraction": 0.3658154308795929,
+      "rms": 0.6028138399124146
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "zero_rgb",
+      "cosine": 0.014513134956359863,
+      "relative_l2": 0.17350994050502777,
+      "pooled_cosine": 0.01076120138168335,
+      "zero_fraction": 0.35890623927116394,
+      "rms": 0.5733950138092041
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "zero_xyz",
+      "cosine": 0.28208476305007935,
+      "relative_l2": 0.7031848430633545,
+      "pooled_cosine": 0.022439777851104736,
+      "zero_fraction": 0.3655956983566284,
+      "rms": 0.37344539165496826
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "rgb_shift_5",
+      "cosine": 0.0033794045448303223,
+      "relative_l2": 0.08227997273206711,
+      "pooled_cosine": 2.5510787963867188e-05,
+      "zero_fraction": 0.3651489317417145,
+      "rms": 0.6028580069541931
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "xyz_shift_5",
+      "cosine": 0.033529460430145264,
+      "relative_l2": 0.2595553398132324,
+      "pooled_cosine": 0.00020706653594970703,
+      "zero_fraction": 0.36336424946784973,
+      "rms": 0.6061725616455078
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "joint_shift_5",
+      "cosine": 0.03694760799407959,
+      "relative_l2": 0.2722882032394409,
+      "pooled_cosine": 0.00021326541900634766,
+      "zero_fraction": 0.3623046875,
+      "rms": 0.6054787635803223
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "rgb_noise_0.1",
+      "cosine": 0.0027814507484436035,
+      "relative_l2": 0.0748937800526619,
+      "pooled_cosine": 7.748603820800781e-06,
+      "zero_fraction": 0.36585694551467896,
+      "rms": 0.6055510640144348
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "depth_noise_5",
+      "cosine": 0.0013233423233032227,
+      "relative_l2": 0.05163297429680824,
+      "pooled_cosine": 1.3113021850585938e-06,
+      "zero_fraction": 0.3652880787849426,
+      "rms": 0.6023333668708801
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "depth_dropout_0.3",
+      "cosine": 0.04621744155883789,
+      "relative_l2": 0.3116452991962433,
+      "pooled_cosine": 0.002155601978302002,
+      "zero_fraction": 0.3605029284954071,
+      "rms": 0.5259740352630615
+    },
+    {
+      "family": "shared",
+      "stage": 0,
+      "condition": "occlusion_0.3",
+      "cosine": 0.04485130310058594,
+      "relative_l2": 0.29834771156311035,
+      "pooled_cosine": 0.0020705461502075195,
+      "zero_fraction": 0.3473266661167145,
+      "rms": 0.5548971891403198
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "clean",
+      "cosine": -7.152557373046875e-07,
+      "relative_l2": 0.0,
+      "pooled_cosine": 1.7881393432617188e-07,
+      "zero_fraction": 0.12462890893220901,
+      "rms": 0.5327820181846619
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "brightness_0.5",
+      "cosine": 7.605552673339844e-05,
+      "relative_l2": 0.01240617036819458,
+      "pooled_cosine": 3.6656856536865234e-05,
+      "zero_fraction": 0.12416503578424454,
+      "rms": 0.5323389172554016
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "blur_3",
+      "cosine": 8.463859558105469e-06,
+      "relative_l2": 0.004408943932503462,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.1246630847454071,
+      "rms": 0.5327527523040771
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "zero_rgb",
+      "cosine": 0.00029075145721435547,
+      "relative_l2": 0.024174602702260017,
+      "pooled_cosine": 0.00013816356658935547,
+      "zero_fraction": 0.12366699427366257,
+      "rms": 0.5320628881454468
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "zero_xyz",
+      "cosine": 0.005264222621917725,
+      "relative_l2": 0.10253872722387314,
+      "pooled_cosine": 0.00037479400634765625,
+      "zero_fraction": 0.12212890386581421,
+      "rms": 0.5279900431632996
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "rgb_shift_5",
+      "cosine": 5.6743621826171875e-05,
+      "relative_l2": 0.010744898580014706,
+      "pooled_cosine": 3.5762786865234375e-07,
+      "zero_fraction": 0.12460937350988388,
+      "rms": 0.5327485799789429
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "xyz_shift_5",
+      "cosine": 0.0006264448165893555,
+      "relative_l2": 0.03542309254407883,
+      "pooled_cosine": 4.291534423828125e-06,
+      "zero_fraction": 0.12464355677366257,
+      "rms": 0.5328444242477417
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "joint_shift_5",
+      "cosine": 0.0006844997406005859,
+      "relative_l2": 0.037018682807683945,
+      "pooled_cosine": 3.6954879760742188e-06,
+      "zero_fraction": 0.12454590201377869,
+      "rms": 0.5327818989753723
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "rgb_noise_0.1",
+      "cosine": 5.0008296966552734e-05,
+      "relative_l2": 0.01000221911817789,
+      "pooled_cosine": 2.384185791015625e-07,
+      "zero_fraction": 0.1247265636920929,
+      "rms": 0.5328312516212463
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "depth_noise_5",
+      "cosine": 2.1576881408691406e-05,
+      "relative_l2": 0.0067017413675785065,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.12459960579872131,
+      "rms": 0.5327687859535217
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "depth_dropout_0.3",
+      "cosine": 0.0009007453918457031,
+      "relative_l2": 0.04250221326947212,
+      "pooled_cosine": 5.9604644775390625e-05,
+      "zero_fraction": 0.12256836146116257,
+      "rms": 0.5311838388442993
+    },
+    {
+      "family": "shared",
+      "stage": 1,
+      "condition": "occlusion_0.3",
+      "cosine": 0.0009396076202392578,
+      "relative_l2": 0.04347077012062073,
+      "pooled_cosine": 7.355213165283203e-05,
+      "zero_fraction": 0.12326660007238388,
+      "rms": 0.5318986177444458
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "clean",
+      "cosine": -2.1457672119140625e-06,
+      "relative_l2": 0.0,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.12592773139476776,
+      "rms": 1.1035784482955933
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "brightness_0.5",
+      "cosine": 1.3887882232666016e-05,
+      "relative_l2": 0.005590923596173525,
+      "pooled_cosine": 7.3909759521484375e-06,
+      "zero_fraction": 0.12547852098941803,
+      "rms": 1.1028567552566528
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "blur_3",
+      "cosine": -1.1920928955078125e-07,
+      "relative_l2": 0.0019501926144585013,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.1259423792362213,
+      "rms": 1.1035610437393188
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "zero_rgb",
+      "cosine": 5.716085433959961e-05,
+      "relative_l2": 0.010920565575361252,
+      "pooled_cosine": 2.8312206268310547e-05,
+      "zero_fraction": 0.12490234524011612,
+      "rms": 1.1022567749023438
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "zero_xyz",
+      "cosine": 0.0010250210762023926,
+      "relative_l2": 0.04534812644124031,
+      "pooled_cosine": 7.534027099609375e-05,
+      "zero_fraction": 0.12998047471046448,
+      "rms": 1.100841999053955
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "rgb_shift_5",
+      "cosine": 9.5367431640625e-06,
+      "relative_l2": 0.004814918152987957,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.1258203089237213,
+      "rms": 1.1035264730453491
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "xyz_shift_5",
+      "cosine": 0.00011539459228515625,
+      "relative_l2": 0.015352608636021614,
+      "pooled_cosine": 8.940696716308594e-07,
+      "zero_fraction": 0.12659667432308197,
+      "rms": 1.103854775428772
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "joint_shift_5",
+      "cosine": 0.00012826919555664062,
+      "relative_l2": 0.016135510057210922,
+      "pooled_cosine": 6.556510925292969e-07,
+      "zero_fraction": 0.12653808295726776,
+      "rms": 1.1037670373916626
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "rgb_noise_0.1",
+      "cosine": 7.927417755126953e-06,
+      "relative_l2": 0.004389124922454357,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.12595702707767487,
+      "rms": 1.1036205291748047
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "depth_noise_5",
+      "cosine": 2.4437904357910156e-06,
+      "relative_l2": 0.002913037082180381,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.12581543624401093,
+      "rms": 1.1035795211791992
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "depth_dropout_0.3",
+      "cosine": 0.00017249584197998047,
+      "relative_l2": 0.018729954957962036,
+      "pooled_cosine": 1.2278556823730469e-05,
+      "zero_fraction": 0.12650389969348907,
+      "rms": 1.102618932723999
+    },
+    {
+      "family": "shared",
+      "stage": 2,
+      "condition": "occlusion_0.3",
+      "cosine": 0.00018036365509033203,
+      "relative_l2": 0.018979031592607498,
+      "pooled_cosine": 1.2755393981933594e-05,
+      "zero_fraction": 0.12544433772563934,
+      "rms": 1.102551817893982
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "clean",
+      "cosine": -4.887580871582031e-06,
+      "relative_l2": 0.0,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.09038086235523224,
+      "rms": 1.676727056503296
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "brightness_0.5",
+      "cosine": 1.0728836059570312e-06,
+      "relative_l2": 0.0035423152148723602,
+      "pooled_cosine": 2.8014183044433594e-06,
+      "zero_fraction": 0.09077148139476776,
+      "rms": 1.675926923751831
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "blur_3",
+      "cosine": -4.291534423828125e-06,
+      "relative_l2": 0.001250278321094811,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.09039551019668579,
+      "rms": 1.676711082458496
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "zero_rgb",
+      "cosine": 1.6808509826660156e-05,
+      "relative_l2": 0.006888835225254297,
+      "pooled_cosine": 1.0967254638671875e-05,
+      "zero_fraction": 0.09107910096645355,
+      "rms": 1.675239086151123
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "zero_xyz",
+      "cosine": 0.0004165172576904297,
+      "relative_l2": 0.029045820236206055,
+      "pooled_cosine": 2.7239322662353516e-05,
+      "zero_fraction": 0.09298339486122131,
+      "rms": 1.6739975214004517
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "rgb_shift_5",
+      "cosine": -1.1920928955078125e-07,
+      "relative_l2": 0.0030539785511791706,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09038574248552322,
+      "rms": 1.6766802072525024
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "xyz_shift_5",
+      "cosine": 4.3511390686035156e-05,
+      "relative_l2": 0.009873795323073864,
+      "pooled_cosine": 3.5762786865234375e-07,
+      "zero_fraction": 0.09051269292831421,
+      "rms": 1.6771084070205688
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "joint_shift_5",
+      "cosine": 4.8041343688964844e-05,
+      "relative_l2": 0.010348883457481861,
+      "pooled_cosine": 1.7881393432617188e-07,
+      "zero_fraction": 0.09046386927366257,
+      "rms": 1.6770219802856445
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "rgb_noise_0.1",
+      "cosine": -1.5497207641601562e-06,
+      "relative_l2": 0.002812664955854416,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.09028320014476776,
+      "rms": 1.676764726638794
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "depth_noise_5",
+      "cosine": -3.2186508178710938e-06,
+      "relative_l2": 0.001872357213869691,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.09036621451377869,
+      "rms": 1.676725149154663
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "depth_dropout_0.3",
+      "cosine": 6.753206253051758e-05,
+      "relative_l2": 0.01201194990426302,
+      "pooled_cosine": 4.649162292480469e-06,
+      "zero_fraction": 0.09060058742761612,
+      "rms": 1.6756497621536255
+    },
+    {
+      "family": "shared",
+      "stage": 3,
+      "condition": "occlusion_0.3",
+      "cosine": 6.949901580810547e-05,
+      "relative_l2": 0.01222106721252203,
+      "pooled_cosine": 5.125999450683594e-06,
+      "zero_fraction": 0.09068847447633743,
+      "rms": 1.6754881143569946
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "clean",
+      "cosine": 1.1980533599853516e-05,
+      "relative_l2": 0.0,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09881836175918579,
+      "rms": 1.8965872526168823
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "brightness_0.5",
+      "cosine": 1.4781951904296875e-05,
+      "relative_l2": 0.0021110305096954107,
+      "pooled_cosine": 1.0132789611816406e-06,
+      "zero_fraction": 0.09918945282697678,
+      "rms": 1.8962146043777466
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "blur_3",
+      "cosine": 1.2218952178955078e-05,
+      "relative_l2": 0.0007488180417567492,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09878906607627869,
+      "rms": 1.896578073501587
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "zero_rgb",
+      "cosine": 2.014636993408203e-05,
+      "relative_l2": 0.004089184105396271,
+      "pooled_cosine": 3.933906555175781e-06,
+      "zero_fraction": 0.09935058653354645,
+      "rms": 1.8959026336669922
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "zero_xyz",
+      "cosine": 0.00016456842422485352,
+      "relative_l2": 0.017828838899731636,
+      "pooled_cosine": 1.0728836059570312e-05,
+      "zero_fraction": 0.10016357153654099,
+      "rms": 1.8952726125717163
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "rgb_shift_5",
+      "cosine": 1.4007091522216797e-05,
+      "relative_l2": 0.00182863709051162,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.09887939691543579,
+      "rms": 1.8965632915496826
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "xyz_shift_5",
+      "cosine": 2.950429916381836e-05,
+      "relative_l2": 0.0060037788935005665,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.09876465052366257,
+      "rms": 1.8967607021331787
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "joint_shift_5",
+      "cosine": 3.212690353393555e-05,
+      "relative_l2": 0.006285702809691429,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.09882079809904099,
+      "rms": 1.8967164754867554
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "rgb_noise_0.1",
+      "cosine": 1.4483928680419922e-05,
+      "relative_l2": 0.0016949821729213,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09877929836511612,
+      "rms": 1.8966063261032104
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "depth_noise_5",
+      "cosine": 1.233816146850586e-05,
+      "relative_l2": 0.0011296438751742244,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09881591796875,
+      "rms": 1.8965859413146973
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "depth_dropout_0.3",
+      "cosine": 3.8504600524902344e-05,
+      "relative_l2": 0.007290735840797424,
+      "pooled_cosine": 1.8477439880371094e-06,
+      "zero_fraction": 0.09915771335363388,
+      "rms": 1.8960891962051392
+    },
+    {
+      "family": "fusion",
+      "stage": 0,
+      "condition": "occlusion_0.3",
+      "cosine": 3.8743019104003906e-05,
+      "relative_l2": 0.007478817831724882,
+      "pooled_cosine": 2.0265579223632812e-06,
+      "zero_fraction": 0.09919433295726776,
+      "rms": 1.8960330486297607
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "clean",
+      "cosine": -1.1444091796875e-05,
+      "relative_l2": 0.0,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09202392399311066,
+      "rms": 2.0946543216705322
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "brightness_0.5",
+      "cosine": -9.5367431640625e-06,
+      "relative_l2": 0.0018853038782253861,
+      "pooled_cosine": 8.344650268554688e-07,
+      "zero_fraction": 0.09202392399311066,
+      "rms": 2.094320058822632
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "blur_3",
+      "cosine": -1.1205673217773438e-05,
+      "relative_l2": 0.0006690651644021273,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.09202148765325546,
+      "rms": 2.0946459770202637
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "zero_rgb",
+      "cosine": -4.887580871582031e-06,
+      "relative_l2": 0.003666450036689639,
+      "pooled_cosine": 3.159046173095703e-06,
+      "zero_fraction": 0.09202881157398224,
+      "rms": 2.0940442085266113
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "zero_xyz",
+      "cosine": 0.00011897087097167969,
+      "relative_l2": 0.01596633531153202,
+      "pooled_cosine": 8.761882781982422e-06,
+      "zero_fraction": 0.09204589575529099,
+      "rms": 2.093449115753174
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "rgb_shift_5",
+      "cosine": -1.0013580322265625e-05,
+      "relative_l2": 0.0016316992696374655,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09202881157398224,
+      "rms": 2.0946309566497803
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "xyz_shift_5",
+      "cosine": 2.4437904357910156e-06,
+      "relative_l2": 0.005391757935285568,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.09202636778354645,
+      "rms": 2.094820737838745
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "joint_shift_5",
+      "cosine": 3.933906555175781e-06,
+      "relative_l2": 0.00564350001513958,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.09202636778354645,
+      "rms": 2.0947787761688232
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "rgb_noise_0.1",
+      "cosine": -1.0967254638671875e-05,
+      "relative_l2": 0.0015224205562844872,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.09202392399311066,
+      "rms": 2.0946733951568604
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "depth_noise_5",
+      "cosine": -1.1563301086425781e-05,
+      "relative_l2": 0.0010131518356502056,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.09202392399311066,
+      "rms": 2.094653367996216
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "depth_dropout_0.3",
+      "cosine": 1.0132789611816406e-05,
+      "relative_l2": 0.00653965724632144,
+      "pooled_cosine": 1.6689300537109375e-06,
+      "zero_fraction": 0.09203369170427322,
+      "rms": 2.0942177772521973
+    },
+    {
+      "family": "fusion",
+      "stage": 1,
+      "condition": "occlusion_0.3",
+      "cosine": 1.3053417205810547e-05,
+      "relative_l2": 0.006731807254254818,
+      "pooled_cosine": 1.6689300537109375e-06,
+      "zero_fraction": 0.09202881157398224,
+      "rms": 2.0941450595855713
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "clean",
+      "cosine": 1.0728836059570312e-06,
+      "relative_l2": 0.0,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.32279297709465027,
+      "rms": 0.47308623790740967
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "brightness_0.5",
+      "cosine": 8.940696716308594e-07,
+      "relative_l2": 0.00030161847826093435,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.32279786467552185,
+      "rms": 0.4730868637561798
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "blur_3",
+      "cosine": 9.5367431640625e-07,
+      "relative_l2": 0.00010570292215561494,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.3228076100349426,
+      "rms": 0.4730861186981201
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "zero_rgb",
+      "cosine": 1.2516975402832031e-06,
+      "relative_l2": 0.0005862784455530345,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.32279786467552185,
+      "rms": 0.47308778762817383
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "zero_xyz",
+      "cosine": 5.125999450683594e-06,
+      "relative_l2": 0.0026659073773771524,
+      "pooled_cosine": 3.5762786865234375e-07,
+      "zero_fraction": 0.32298827171325684,
+      "rms": 0.4730904996395111
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "rgb_shift_5",
+      "cosine": 6.556510925292969e-07,
+      "relative_l2": 0.0002596583217382431,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.32279297709465027,
+      "rms": 0.47308510541915894
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "xyz_shift_5",
+      "cosine": 3.5762786865234375e-07,
+      "relative_l2": 0.0008812411106191576,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.32279786467552185,
+      "rms": 0.473089337348938
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "joint_shift_5",
+      "cosine": 9.5367431640625e-07,
+      "relative_l2": 0.0009209028794430196,
+      "pooled_cosine": 1.7881393432617188e-07,
+      "zero_fraction": 0.3228173851966858,
+      "rms": 0.4730880558490753
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "rgb_noise_0.1",
+      "cosine": 4.76837158203125e-07,
+      "relative_l2": 0.00024077220587059855,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.3228076100349426,
+      "rms": 0.47308677434921265
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "depth_noise_5",
+      "cosine": 4.76837158203125e-07,
+      "relative_l2": 0.0001657056127442047,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.3228173851966858,
+      "rms": 0.47308632731437683
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "depth_dropout_0.3",
+      "cosine": 1.6689300537109375e-06,
+      "relative_l2": 0.0010706228204071522,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.3228466808795929,
+      "rms": 0.47308626770973206
+    },
+    {
+      "family": "fusion",
+      "stage": 2,
+      "condition": "occlusion_0.3",
+      "cosine": 1.5497207641601562e-06,
+      "relative_l2": 0.001117411069571972,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.3228124976158142,
+      "rms": 0.47308477759361267
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "clean",
+      "cosine": -1.1920928955078125e-07,
+      "relative_l2": 0.0,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.18169432878494263,
+      "rms": 0.7270607948303223
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "brightness_0.5",
+      "cosine": 1.7881393432617188e-07,
+      "relative_l2": 0.00018752639880403876,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.18164551258087158,
+      "rms": 0.7270643711090088
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "blur_3",
+      "cosine": 4.76837158203125e-07,
+      "relative_l2": 6.601004133699462e-05,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.18169432878494263,
+      "rms": 0.7270607352256775
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "zero_rgb",
+      "cosine": 0.0,
+      "relative_l2": 0.00036445813020691276,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.18159668147563934,
+      "rms": 0.7270674705505371
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "zero_xyz",
+      "cosine": 2.86102294921875e-06,
+      "relative_l2": 0.0016767975175753236,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.18174315989017487,
+      "rms": 0.727071225643158
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "rgb_shift_5",
+      "cosine": 4.76837158203125e-07,
+      "relative_l2": 0.00016184613923542202,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.18167968094348907,
+      "rms": 0.7270601391792297
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "xyz_shift_5",
+      "cosine": 7.152557373046875e-07,
+      "relative_l2": 0.0005498852697201073,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.18168945610523224,
+      "rms": 0.7270625233650208
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "joint_shift_5",
+      "cosine": 1.0728836059570312e-06,
+      "relative_l2": 0.0005751632852479815,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.1816748082637787,
+      "rms": 0.7270618677139282
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "rgb_noise_0.1",
+      "cosine": 4.76837158203125e-07,
+      "relative_l2": 0.00015040140715427697,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.18168456852436066,
+      "rms": 0.7270612716674805
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "depth_noise_5",
+      "cosine": 1.1920928955078125e-07,
+      "relative_l2": 0.00010339154687244445,
+      "pooled_cosine": -1.1920928955078125e-07,
+      "zero_fraction": 0.18168945610523224,
+      "rms": 0.7270607352256775
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "depth_dropout_0.3",
+      "cosine": 1.2516975402832031e-06,
+      "relative_l2": 0.0006704056868329644,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.18174315989017487,
+      "rms": 0.7270635962486267
+    },
+    {
+      "family": "fusion",
+      "stage": 3,
+      "condition": "occlusion_0.3",
+      "cosine": 2.980232238769531e-07,
+      "relative_l2": 0.0007051838911138475,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.18171875178813934,
+      "rms": 0.7270635962486267
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "clean",
+      "cosine": -2.1457672119140625e-06,
+      "relative_l2": 0.0,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.2009570300579071,
+      "rms": 1.1984385251998901
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "brightness_0.5",
+      "cosine": -2.0265579223632812e-06,
+      "relative_l2": 0.00010722302249632776,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.20094726979732513,
+      "rms": 1.1984448432922363
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "blur_3",
+      "cosine": -2.2649765014648438e-06,
+      "relative_l2": 3.7957404856570065e-05,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.20096679031848907,
+      "rms": 1.1984384059906006
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "zero_rgb",
+      "cosine": -2.5033950805664062e-06,
+      "relative_l2": 0.00020872730237897485,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.200927734375,
+      "rms": 1.1984500885009766
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "zero_xyz",
+      "cosine": -2.86102294921875e-06,
+      "relative_l2": 0.00097945227753371,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.2009912133216858,
+      "rms": 1.1984477043151855
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "rgb_shift_5",
+      "cosine": -2.384185791015625e-06,
+      "relative_l2": 9.291407332057133e-05,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.2009619176387787,
+      "rms": 1.1984379291534424
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "xyz_shift_5",
+      "cosine": -2.1457672119140625e-06,
+      "relative_l2": 0.00031719301478005946,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.20094726979732513,
+      "rms": 1.198438286781311
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "joint_shift_5",
+      "cosine": -2.1457672119140625e-06,
+      "relative_l2": 0.0003312881162855774,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.20095214247703552,
+      "rms": 1.1984378099441528
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "rgb_noise_0.1",
+      "cosine": -2.0265579223632812e-06,
+      "relative_l2": 8.637211431050673e-05,
+      "pooled_cosine": 1.1920928955078125e-07,
+      "zero_fraction": 0.2009619176387787,
+      "rms": 1.1984387636184692
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "depth_noise_5",
+      "cosine": -2.1457672119140625e-06,
+      "relative_l2": 5.964868614682928e-05,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.20095214247703552,
+      "rms": 1.1984385251998901
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "depth_dropout_0.3",
+      "cosine": -1.6689300537109375e-06,
+      "relative_l2": 0.0003881105512846261,
+      "pooled_cosine": 5.960464477539063e-08,
+      "zero_fraction": 0.20093749463558197,
+      "rms": 1.1984424591064453
+    },
+    {
+      "family": "fusion",
+      "stage": 4,
+      "condition": "occlusion_0.3",
+      "cosine": -2.9802322387695312e-06,
+      "relative_l2": 0.0004125673440285027,
+      "pooled_cosine": 0.0,
+      "zero_fraction": 0.2009570300579071,
+      "rms": 1.1984444856643677
+    }
+  ]
+}

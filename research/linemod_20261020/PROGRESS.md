@@ -1,0 +1,1 @@
+Checked 2026-10-21T19:43:08-04:00. Approved recovery service: analysis_complete. Saved poses: 15800/15800 (100.00%); rounded recovered: 5186; new native-precision: 10614. Last scene/image/object: [15, 1242, 15]. Recent speed: 0.522 new poses/s. Estimated inference remaining: 0.00 hours (excludes CPU analysis). Files: debug/bop_recovery_20261021/.

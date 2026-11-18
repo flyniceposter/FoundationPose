@@ -1,0 +1,1327 @@
+{
+  "refine": {
+    "c_in": 6,
+    "crop_ratio": 1.2,
+    "strict_load": true,
+    "input_shape": [
+      1,
+      6,
+      160,
+      160
+    ],
+    "total_parameters": 16830406,
+    "shared_parameters": 684480,
+    "fusion_parameters": 12986880,
+    "stages": [
+      {
+        "family": "shared",
+        "stage": 0,
+        "shape": [
+          1,
+          64,
+          80,
+          80
+        ],
+        "parameters": 19008
+      },
+      {
+        "family": "shared",
+        "stage": 1,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 74112
+      },
+      {
+        "family": "shared",
+        "stage": 2,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 295680
+      },
+      {
+        "family": "shared",
+        "stage": 3,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 295680
+      },
+      {
+        "family": "fusion",
+        "stage": 0,
+        "shape": [
+          1,
+          256,
+          40,
+          40
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 1,
+        "shape": [
+          1,
+          256,
+          40,
+          40
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 2,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 3,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 4721664
+      },
+      {
+        "family": "fusion",
+        "stage": 4,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 4721664
+      }
+    ],
+    "batchnorm": [
+      {
+        "name": "encodeA.0.net.1",
+        "channels": 64,
+        "variance_min": 0.028158191591501236,
+        "variance_median": 4.888909816741943,
+        "scale_abs_mean": 0.8917729258537292
+      },
+      {
+        "name": "encodeA.1.net.1",
+        "channels": 128,
+        "variance_min": 2.3267574310302734,
+        "variance_median": 28.1393985748291,
+        "scale_abs_mean": 0.9594079852104187
+      },
+      {
+        "name": "encodeA.2.bn1",
+        "channels": 128,
+        "variance_min": 1.4951636791229248,
+        "variance_median": 7.573059558868408,
+        "scale_abs_mean": 0.981010913848877
+      },
+      {
+        "name": "encodeA.2.bn2",
+        "channels": 128,
+        "variance_min": 2.430529832839966,
+        "variance_median": 6.296108245849609,
+        "scale_abs_mean": 0.9388149380683899
+      },
+      {
+        "name": "encodeA.3.bn1",
+        "channels": 128,
+        "variance_min": 5.752963066101074,
+        "variance_median": 16.0941219329834,
+        "scale_abs_mean": 0.9782538414001465
+      },
+      {
+        "name": "encodeA.3.bn2",
+        "channels": 128,
+        "variance_min": 2.544100522994995,
+        "variance_median": 6.743340969085693,
+        "scale_abs_mean": 0.9915676712989807
+      },
+      {
+        "name": "encodeAB.0.bn1",
+        "channels": 256,
+        "variance_min": 33.24116897583008,
+        "variance_median": 80.49659729003906,
+        "scale_abs_mean": 0.9589681625366211
+      },
+      {
+        "name": "encodeAB.0.bn2",
+        "channels": 256,
+        "variance_min": 6.547281265258789,
+        "variance_median": 17.30358123779297,
+        "scale_abs_mean": 0.9854110479354858
+      },
+      {
+        "name": "encodeAB.1.bn1",
+        "channels": 256,
+        "variance_min": 42.58408737182617,
+        "variance_median": 89.87179565429688,
+        "scale_abs_mean": 0.9320801496505737
+      },
+      {
+        "name": "encodeAB.1.bn2",
+        "channels": 256,
+        "variance_min": 4.794572353363037,
+        "variance_median": 12.724448204040527,
+        "scale_abs_mean": 1.0439631938934326
+      },
+      {
+        "name": "encodeAB.2.net.1",
+        "channels": 512,
+        "variance_min": 61.051292419433594,
+        "variance_median": 116.56583404541016,
+        "scale_abs_mean": 0.8192020654678345
+      },
+      {
+        "name": "encodeAB.3.bn1",
+        "channels": 512,
+        "variance_min": 10.363274574279785,
+        "variance_median": 23.380781173706055,
+        "scale_abs_mean": 0.9197583198547363
+      },
+      {
+        "name": "encodeAB.3.bn2",
+        "channels": 512,
+        "variance_min": 8.483436584472656,
+        "variance_median": 21.15008544921875,
+        "scale_abs_mean": 0.877637505531311
+      },
+      {
+        "name": "encodeAB.4.bn1",
+        "channels": 512,
+        "variance_min": 16.905731201171875,
+        "variance_median": 39.96665573120117,
+        "scale_abs_mean": 0.9048974514007568
+      },
+      {
+        "name": "encodeAB.4.bn2",
+        "channels": 512,
+        "variance_min": 8.517119407653809,
+        "variance_median": 24.75257682800293,
+        "scale_abs_mean": 1.229443907737732
+      }
+    ],
+    "first_conv_rgb_norm": 5.965164661407471,
+    "first_conv_xyz_norm": 20.442792892456055
+  },
+  "score": {
+    "c_in": 6,
+    "crop_ratio": 1.1,
+    "strict_load": true,
+    "input_shape": [
+      1,
+      6,
+      160,
+      160
+    ],
+    "total_parameters": 15773121,
+    "shared_parameters": 684480,
+    "fusion_parameters": 12986880,
+    "stages": [
+      {
+        "family": "shared",
+        "stage": 0,
+        "shape": [
+          1,
+          64,
+          80,
+          80
+        ],
+        "parameters": 19008
+      },
+      {
+        "family": "shared",
+        "stage": 1,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 74112
+      },
+      {
+        "family": "shared",
+        "stage": 2,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 295680
+      },
+      {
+        "family": "shared",
+        "stage": 3,
+        "shape": [
+          1,
+          128,
+          40,
+          40
+        ],
+        "parameters": 295680
+      },
+      {
+        "family": "fusion",
+        "stage": 0,
+        "shape": [
+          1,
+          256,
+          40,
+          40
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 1,
+        "shape": [
+          1,
+          256,
+          40,
+          40
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 2,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 1181184
+      },
+      {
+        "family": "fusion",
+        "stage": 3,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 4721664
+      },
+      {
+        "family": "fusion",
+        "stage": 4,
+        "shape": [
+          1,
+          512,
+          20,
+          20
+        ],
+        "parameters": 4721664
+      }
+    ],
+    "batchnorm": [
+      {
+        "name": "encoderA.0.net.1",
+        "channels": 64,
+        "variance_min": 0.06706329435110092,
+        "variance_median": 5.8771748542785645,
+        "scale_abs_mean": 0.8939163088798523
+      },
+      {
+        "name": "encoderA.1.net.1",
+        "channels": 128,
+        "variance_min": 4.517419338226318,
+        "variance_median": 23.480188369750977,
+        "scale_abs_mean": 1.0083544254302979
+      },
+      {
+        "name": "encoderA.2.bn1",
+        "channels": 128,
+        "variance_min": 3.063626289367676,
+        "variance_median": 11.521318435668945,
+        "scale_abs_mean": 0.9932673573493958
+      },
+      {
+        "name": "encoderA.2.bn2",
+        "channels": 128,
+        "variance_min": 4.2433013916015625,
+        "variance_median": 10.237488746643066,
+        "scale_abs_mean": 0.9594758749008179
+      },
+      {
+        "name": "encoderA.3.bn1",
+        "channels": 128,
+        "variance_min": 12.316028594970703,
+        "variance_median": 35.80063247680664,
+        "scale_abs_mean": 0.9770846962928772
+      },
+      {
+        "name": "encoderA.3.bn2",
+        "channels": 128,
+        "variance_min": 4.10042667388916,
+        "variance_median": 10.946009635925293,
+        "scale_abs_mean": 0.952785313129425
+      },
+      {
+        "name": "encoderAB.0.bn1",
+        "channels": 256,
+        "variance_min": 71.80562591552734,
+        "variance_median": 140.13291931152344,
+        "scale_abs_mean": 0.9592487215995789
+      },
+      {
+        "name": "encoderAB.0.bn2",
+        "channels": 256,
+        "variance_min": 6.416934967041016,
+        "variance_median": 23.516935348510742,
+        "scale_abs_mean": 0.9823241233825684
+      },
+      {
+        "name": "encoderAB.1.bn1",
+        "channels": 256,
+        "variance_min": 64.1283950805664,
+        "variance_median": 125.85025787353516,
+        "scale_abs_mean": 0.9718446731567383
+      },
+      {
+        "name": "encoderAB.1.bn2",
+        "channels": 256,
+        "variance_min": 9.05771255493164,
+        "variance_median": 27.133441925048828,
+        "scale_abs_mean": 0.9808337092399597
+      },
+      {
+        "name": "encoderAB.2.net.1",
+        "channels": 512,
+        "variance_min": 73.29414367675781,
+        "variance_median": 237.37734985351562,
+        "scale_abs_mean": 0.8683536052703857
+      },
+      {
+        "name": "encoderAB.3.bn1",
+        "channels": 512,
+        "variance_min": 31.09218406677246,
+        "variance_median": 129.7289276123047,
+        "scale_abs_mean": 0.9578851461410522
+      },
+      {
+        "name": "encoderAB.3.bn2",
+        "channels": 512,
+        "variance_min": 68.72077178955078,
+        "variance_median": 954.37890625,
+        "scale_abs_mean": 0.8695089221000671
+      },
+      {
+        "name": "encoderAB.4.bn1",
+        "channels": 512,
+        "variance_min": 29.660398483276367,
+        "variance_median": 396.8111877441406,
+        "scale_abs_mean": 0.9546810388565063
+      },
+      {
+        "name": "encoderAB.4.bn2",
+        "channels": 512,
+        "variance_min": 211.3814697265625,
+        "variance_median": 2663.16259765625,
+        "scale_abs_mean": 0.905606210231781
+      }
+    ],
+    "first_conv_rgb_norm": 7.172604560852051,
+    "first_conv_xyz_norm": 15.193503379821777
+  },
+  "cross_network_tensors": [
+    {
+      "family": "shared",
+      "tensor": "0.net.0.weight",
+      "shape": [
+        64,
+        6,
+        7,
+        7
+      ],
+      "identical": false,
+      "cosine": 0.5827126379839095
+    },
+    {
+      "family": "shared",
+      "tensor": "0.net.0.bias",
+      "shape": [
+        64
+      ],
+      "identical": false,
+      "cosine": 0.14755006723988875
+    },
+    {
+      "family": "shared",
+      "tensor": "0.net.1.weight",
+      "shape": [
+        64
+      ],
+      "identical": false,
+      "cosine": 0.9496224108403465
+    },
+    {
+      "family": "shared",
+      "tensor": "0.net.1.bias",
+      "shape": [
+        64
+      ],
+      "identical": false,
+      "cosine": 0.464544056795209
+    },
+    {
+      "family": "shared",
+      "tensor": "0.net.1.running_mean",
+      "shape": [
+        64
+      ],
+      "identical": false,
+      "cosine": 0.28328848735100937
+    },
+    {
+      "family": "shared",
+      "tensor": "0.net.1.running_var",
+      "shape": [
+        64
+      ],
+      "identical": false,
+      "cosine": 0.6740808195191201
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.0.weight",
+      "shape": [
+        128,
+        64,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.21213741325696833
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.0.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.13977318269735842
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.1.weight",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.9776822969994833
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.1.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.2963552425848389
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.1.running_mean",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.6850442820773739
+    },
+    {
+      "family": "shared",
+      "tensor": "1.net.1.running_var",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.5519847193009008
+    },
+    {
+      "family": "shared",
+      "tensor": "2.conv1.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.0988743625322975
+    },
+    {
+      "family": "shared",
+      "tensor": "2.conv1.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.2666893219847298
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn1.weight",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.9665265837544821
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn1.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.25299180007347644
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn1.running_mean",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.25049589811638767
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn1.running_var",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.5502421567889063
+    },
+    {
+      "family": "shared",
+      "tensor": "2.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.09731021132678461
+    },
+    {
+      "family": "shared",
+      "tensor": "2.conv2.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.17956456978080532
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn2.weight",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.9737158452745969
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn2.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.7071430766067445
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn2.running_mean",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.5433188892120067
+    },
+    {
+      "family": "shared",
+      "tensor": "2.bn2.running_var",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.635020614789363
+    },
+    {
+      "family": "shared",
+      "tensor": "3.conv1.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.07651668374275408
+    },
+    {
+      "family": "shared",
+      "tensor": "3.conv1.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.3306688893503731
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn1.weight",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.9832443182418387
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn1.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.7986430002843112
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn1.running_mean",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.46541573197428276
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn1.running_var",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.7308610035625223
+    },
+    {
+      "family": "shared",
+      "tensor": "3.conv2.weight",
+      "shape": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.08283903087764292
+    },
+    {
+      "family": "shared",
+      "tensor": "3.conv2.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.25606224786247456
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn2.weight",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.9733535450147108
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn2.bias",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.7994934345494669
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn2.running_mean",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.47700366946457756
+    },
+    {
+      "family": "shared",
+      "tensor": "3.bn2.running_var",
+      "shape": [
+        128
+      ],
+      "identical": false,
+      "cosine": 0.5808841686541815
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.conv1.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.03670900454610132
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.conv1.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.31593557494603863
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn1.weight",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.9886113379874809
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn1.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.892023895521352
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn1.running_mean",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.5111151300169814
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn1.running_var",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.8842763408149626
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.03977849040965643
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.conv2.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.361911962836577
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn2.weight",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.9803793864372374
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn2.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.8446167211466598
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn2.running_mean",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.2230882114637558
+    },
+    {
+      "family": "fusion",
+      "tensor": "0.bn2.running_var",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.6476779929556652
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.conv1.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.04412857242475388
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.conv1.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.15765099141416658
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn1.weight",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.9912998551246749
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn1.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.914322019018273
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn1.running_mean",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.4349616142059713
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn1.running_var",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.8968001282521507
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.conv2.weight",
+      "shape": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.033548510603328814
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.conv2.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.3188302026351242
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn2.weight",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.9545087837022465
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn2.bias",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.7740886984066275
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn2.running_mean",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.02800798091541145
+    },
+    {
+      "family": "fusion",
+      "tensor": "1.bn2.running_var",
+      "shape": [
+        256
+      ],
+      "identical": false,
+      "cosine": 0.4259875756148559
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.0.weight",
+      "shape": [
+        512,
+        256,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.03675884009815306
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.0.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.45330729130985264
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.1.weight",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.9907485731986354
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.1.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.8999540747924866
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.1.running_mean",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.3351669710937243
+    },
+    {
+      "family": "fusion",
+      "tensor": "2.net.1.running_var",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.8298146552195904
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.conv1.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.014580045095895331
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.conv1.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.14309832773758085
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn1.weight",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.9886016785293243
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn1.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.8846433722073365
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn1.running_mean",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.05474567221245047
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn1.running_var",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.6961825012610178
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.019023752635117828
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.conv2.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.19879667647415522
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn2.weight",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.9846111744932257
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn2.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.8612749396334812
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn2.running_mean",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.07612568767553116
+    },
+    {
+      "family": "fusion",
+      "tensor": "3.bn2.running_var",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.5647459045628379
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.conv1.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.018039065448994644
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.conv1.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.09192365596188447
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn1.weight",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.9868596070306851
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn1.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.4732145327067928
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn1.running_mean",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.23236310631065063
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn1.running_var",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.6295529473150808
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.conv2.weight",
+      "shape": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "identical": false,
+      "cosine": 0.007753837373392865
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.conv2.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.12929862627957744
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn2.weight",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.9824898204296103
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn2.bias",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.8768615648233364
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn2.running_mean",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": -0.2945184237604574
+    },
+    {
+      "family": "fusion",
+      "tensor": "4.bn2.running_var",
+      "shape": [
+        512
+      ],
+      "identical": false,
+      "cosine": 0.6347916393685356
+    }
+  ],
+  "source_hashes": {
+    "/home/Sahil/FoundationPose/estimater.py": "73a40474d11ab9d9dc873e101b5eef370c0bd78f2874ab1b5148dac402496ad0",
+    "/home/Sahil/FoundationPose/learning/models/refine_network.py": "c024375d544352fbcb94698d792ec6fd017008ca5d093e71e747727ea59db709",
+    "/home/Sahil/FoundationPose/learning/models/score_network.py": "6cea9a7683def72b92e8c8328884e48fb6ca057ff480efab6d1328686b3ce926",
+    "/home/Sahil/FoundationPose/learning/models/network_modules.py": "29a4875a35150c662a3604e88a7f102d2fa4de9d026a8ee07151e09e788a2e26"
+  },
+  "shared_receptive_field_px": [
+    7,
+    11,
+    27,
+    43
+  ],
+  "fusion_receptive_field_px": [
+    59,
+    75,
+    83,
+    115,
+    147
+  ],
+  "receptive_field_note": "Theoretical maximum CNN receptive field through longest residual path; not empirical attribution."
+}

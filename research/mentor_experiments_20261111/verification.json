@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "real-query split disjointness",
+    "references drawn only from training",
+    "appearance ablation changes pixels",
+    "equivalent rotations accepted by symmetry metric",
+    "matched rotation initialization",
+    "development-selected rotation checkpoint",
+    "finite rotation weights",
+    "supervised geometry excluded from XYZ inputs",
+    "normal targets unit length",
+    "adapted encoder actually changed",
+    "BN statistics fixed",
+    "fresh-decoder probes preserve adapted encoder"
+  ],
+  "rotation_scope": "real BOP photographs; rendered training references",
+  "geometry_scope": "real BOP RGB-D; rendered supervision; artificial holes",
+  "excluded_run": "real_rotation_20261111/invalid_render_v1"
+}

@@ -1,0 +1,21 @@
+{
+  "state": "running",
+  "experiment": "mask robustness and development-selected morphology mitigation",
+  "service": "foundationpose-mask-study-v1.service",
+  "output": "/home/Sahil/FoundationPose/debug/mask_study_v1",
+  "live_status": "/home/Sahil/FoundationPose/debug/mask_study_v1/status.json",
+  "maximum_registrations": 50700,
+  "baseline_state": "analysis_complete",
+  "approval": "User authorized full study and mitigation testing in chat",
+  "completion": "Pipeline automatically freezes development selection, evaluates held-out frames and writes REPORT.md; consult live status for success or failure",
+  "point_audit_report": "/home/Sahil/FoundationPose/debug/point_audit_v1/REPORT.md",
+  "queued_experiment": {
+    "service": "foundationpose-point-filter-v1.service",
+    "output": "/home/Sahil/FoundationPose/debug/point_filter_study_v1",
+    "live_status": "/home/Sahil/FoundationPose/debug/point_filter_study_v1/status.json",
+    "maximum_registrations": 28080,
+    "waits_for": "mask_study_v1 complete"
+  },
+  "consolidated_report": "/home/Sahil/FoundationPose/debug/dataset_comparison_v1/REPORT.md",
+  "report_service": "foundationpose-comparison-report-v1.service"
+}

@@ -1,0 +1,38 @@
+{
+  "hashes": {
+    "/home/Sahil/FoundationPose/research/encoder_study_20261028/gpu_phase2/run_gpu.py": "342fc6af10e23615e522c200ab120836d1c8a00d8fcb2b82f14f7552946003c6",
+    "/home/Sahil/FoundationPose/research/encoder_study_20261028/gpu_phase2/PROTOCOL.md": "92a4383b18678b7e05b267e673d158cd36b4560422fe8f265d2e529a32fc9754",
+    "/home/Sahil/FoundationPose/learning/models/network_modules.py": "29a4875a35150c662a3604e88a7f102d2fa4de9d026a8ee07151e09e788a2e26",
+    "/home/Sahil/FoundationPose/learning/models/score_network.py": "6cea9a7683def72b92e8c8328884e48fb6ca057ff480efab6d1328686b3ce926",
+    "/home/Sahil/FoundationPose/learning/models/refine_network.py": "c024375d544352fbcb94698d792ec6fd017008ca5d093e71e747727ea59db709",
+    "/home/Sahil/FoundationPose/weights/2024-01-11-20-02-45/model_best.pth": "81924d384bf5c26c646ee4783104982ae3d1e049c181c36641b6a7aeae494c26",
+    "/home/Sahil/FoundationPose/weights/2024-01-11-20-02-45/config.yml": "a79db4de3b95885dd5ae86833b37b8698a75dad81e87d1086cd50b2fcd8dda3f",
+    "/home/Sahil/FoundationPose/weights/2023-10-28-18-33-37/model_best.pth": "774700586ddc435d408fc01c9809c43e151232936369dfbea0f0f964ba471d60",
+    "/home/Sahil/FoundationPose/weights/2023-10-28-18-33-37/config.yml": "28a6ba94a33230ee5fc3c51939486281578b0972542bd9e38ca6123e75605686",
+    "/home/Sahil/FoundationPose/estimater.py": "73a40474d11ab9d9dc873e101b5eef370c0bd78f2874ab1b5148dac402496ad0",
+    "/home/Sahil/FoundationPose/Utils.py": "ab77518df7a6c41bef82cb32579d06ccff5d435ee5ad716a8c1fef0c72f05ad4",
+    "/home/Sahil/FoundationPose/datareader.py": "c32f24c0f051a45a2683521f52fd848e9a0064304c7f1cf8b56104be8a0b4fd4",
+    "/home/Sahil/FoundationPose/learning/training/predict_pose_refine.py": "a210f46868ab77631fdb264043356a435d06b1294929b304b0922e23c839d64a",
+    "/home/Sahil/FoundationPose/learning/training/predict_score.py": "97f2f6f74fbe60be6a630d515db5142d78045f1150adb26dca56d93cffd3bbde",
+    "/home/Sahil/FoundationPose/learning/datasets/h5_dataset.py": "c582f46c65f9787d7c7d4376f64900e10c87fb4d569f9eca55f05daeec395484"
+  },
+  "conditions": [
+    "clean",
+    "rgb_half",
+    "rgb_blur3",
+    "depth_noise5mm",
+    "depth_dropout30"
+  ],
+  "ablations": [
+    "intact",
+    "zero_observed_xyz",
+    "zero_observed_rgb",
+    "pooled_shared",
+    "zero_shared",
+    "shuffle_shared",
+    "shuffle_fusion"
+  ],
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.11.0+cu128",
+  "scope": "Local GT-conditioned real-pair encoder interventions"
+}

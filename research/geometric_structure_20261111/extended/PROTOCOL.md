@@ -1,0 +1,20 @@
+# Extended BOP geometry experiment — fixed before training
+
+Question: Does depth and local surface-slope supervision make FoundationPose's shared encoder more useful for visible geometry prediction than training only a decoder or using depth supervision alone?
+
+Data: local BOP LINEMOD RGB, measured depth, visible masks, and model diameters. These official test sequences have already been used in earlier local development studies. This entire study is DEVELOPMENT ONLY. Object-disjoint below means unseen to this adaptation run, not unseen to pretrained FoundationPose or previous human inspection. No official BOP test, 6D pose improvement, complete 3D reconstruction or independent-scene generalization claim.
+
+Fixed objects: training 1,2,4,5,6,8,9; development 10,11; adaptation-held-out 12,13,14,15. Sample 120 evenly spaced frames per object. For training objects use first 70% of sampled sequence for training, omit next 10% as temporal buffer, last 20% for seen-object temporal evaluation. All development-object frames select checkpoints. All adaptation-held-out-object frames are evaluated only after training and probe fitting. Save exact frame manifests before training. RGB crops use GT visible boxes, 20% margin and 96x96 resize. No XYZ or depth enters encoder; original six-channel interface uses zero XYZ. Targets: median-centered measured visible depth divided by object diameter. Missing depth/background excluded. No target depth is used to set RGB pixels or crop scale. Crops depend on GT masks, as explicitly allowed only for this diagnostic.
+
+Matched arms per seeds 42,123,2026:
+- frozen: fixed pretrained shared encoder, train depth decoder, depth loss only.
+- depth: fine-tune shared encoder and decoder, depth loss only.
+- structure: same fine-tuning plus multiscale adjacent surface-slope loss (weight 0.2).
+
+All use same initial decoder, minibatch order, RGB brightness/contrast augmentation, batch size 16, 1000 optimization steps, AdamW decoder lr 1e-3, encoder lr 1e-4, weight decay 1e-4, gradient norm clip 5. Pretrained BatchNorm statistics fixed. Validate every 200 steps and at initialization; choose lowest object-macro development relative-depth MAE, with no final-evaluation feedback. No tuning after held-out access. Train objectives use per-image masking, not pixel-count-weighted object aggregation. Seed all RNGs; record runtime and trainable parameter count. Augment only appearance, with same per-sample random parameters across paired arms. Do not distort geometry.
+
+Primary: held-out-object macro MAE normalized by diameter. Also report object-macro mm MAE, depth-gradient MAE, seen-object temporal results and per-object/per-seed metrics. Constant-zero relative depth and a training-only mean spatial depth template are nonlearned controls. These test whether learning exceeds generic near-planar or aligned-shape priors. A fresh common decoder is trained for 400 steps on each selected frozen encoder (including original pretrained encoder), with matched initialization/data/seed. This controls decoder co-adaptation. Its checkpoint is selected on development objects at 100-step intervals; no held-out fitting. Spatial feature shuffling at evaluation tests sensitivity to arrangement; it is a destructive intervention, not proof of semantic geometry understanding.
+
+Report three-seed results and paired differences by object; no frame-independent significance test. Small object/seed counts limit uncertainty estimates. Fixed visualization: first evaluation frame of each adaptation-held-out object, selected before results. Compare predictions with shared per-row scales. Save checkpoints, histories, manifest, data fingerprints, predictions and validation results. Keep deployed inference weights unchanged.
+
+Success is not assumed: a null or negative result is a completed experiment. Depth reconstruction alone cannot establish preservation/improvement of the original pose task. Any useful checkpoint needs downstream RGB-D/pose validation before integration.
